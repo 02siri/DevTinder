@@ -19,4 +19,8 @@
     - Installed Postman app
         - make workspace -> collection -> test GET api call
     - Logic to handle GET, POST, PATCH, PUT, DELETE api calls & testing on Postman
+    - Explore different kinds of routing
+        - Use of ?, +, *, (), regex in the routes
+        - Reading query parameters in the routes (req.query)
+        - Reading dynamic routes (req.params)
 

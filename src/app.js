@@ -5,22 +5,22 @@ const app = express();
 
 //Request handler
 
-    //this will only handle GET api calls to /user
+    //this will only handle GET api calls to /user (/user, /user/xyz, /user/1...)
 app.get("/user", (req,res) => {
-    res.send({
-        firstName: "Srishti",
-        lastName: "Khosla"
-    });
+    console.log(req.query);
+    res.send("Testing req.query");
 });
 
-app.post("/user", (req,res)=>{
-    //saving data to DB
-    console.log("Save data to DB");
-    res.send("Data successfully saved to the database");
+app.get("/user/:userId", (req,res) => {
+    console.log(req.params.userId);
+    res.send("Testing req.params");
 });
 
-app.delete("/user", (req,res) => {
-    res.send("User successfully deleted from the database");
+
+//the ? means, the letter before it is optional
+//so this will work for: /abc, /ac
+app.get(/^\/ab?c$/, (req,res) => {
+    res.send("Testing the ? in the route");
 });
 
 
