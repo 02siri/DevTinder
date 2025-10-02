@@ -1,3 +1,4 @@
+
 # Episode 3: Creating Our Express Server
 
     - Create a repo
@@ -11,5 +12,11 @@
     - What are dependencies 
     - What is the use of "-g" while npm install
     - Difference between tilda (~) and carat (^)
+    - Why package-lock.json has been pushed to github
 
 # Episode 4:
+    - order of routes, and their extensions matter (eg, "/hello", "/hello/2",..)
+    - Installed Postman app
+        - make workspace -> collection -> test GET api call
+    - Logic to handle GET, POST, PATCH, PUT, DELETE api calls & testing on Postman
+
