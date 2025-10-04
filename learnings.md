@@ -24,3 +24,13 @@
         - Reading query parameters in the routes (req.query)
         - Reading dynamic routes (req.params)
 
+# Episode 5: 
+    - Handling multiple Route Handlers (RHs)
+    - next()
+    - next function and errors along with res.send();
+    - app.use ("/route", rH1, [rH2, rH3], rH4, rH5 ) -> Array of RHs
+    - What is a middleware; Why do we need it? 
+    - How Express.js handles requests behind-the-scenes
+    - Difference bw app.use() and app.all() [very small difference bw route handling]
+    - Dummy auth middleware for admin
+    - Dummy auth middleware for all user routes, except /user, /login

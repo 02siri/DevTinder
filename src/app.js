@@ -3,19 +3,30 @@ const express = require ('express');
 //Creating new (instance of) application of express 
 const app = express();
 
-app.use("/user",
-    //Route Handler 1
-    (req,res, next)=>{
-        console.log("First RH")
-        res.send("First response");
-        next();
-        },
+const {adminAuth, userAuth} = require("./middlewares/auth");
 
-    (req,res)=>{
-        console.log("Second RH")
-        res.send("Second response");
-    }
-    );
+//middlewares
+
+//admin middleware
+app.use("/admin", adminAuth);
+
+app.use("/admin/getAllData", (req,res)=>{
+    res.send("Sent all data to Admin");
+});
+
+app.use("/admin/deleteAllData", (req,res)=>{
+    res.send("Delete all data");
+});
+
+//user middleware
+app.get("/user/login", (req,res)=>{
+    res.send("User logged in successfully");
+})
+
+app.get("/user", userAuth, (req,res)=>{
+    res.send("User can perform actions");
+})
+
 
 //created a server on port 3000, and my app is listening on this server
     //this callback function will only work if my sever has been started successfully
