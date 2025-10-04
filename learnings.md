@@ -34,3 +34,5 @@
     - Difference bw app.use() and app.all() [very small difference bw route handling]
     - Dummy auth middleware for admin
     - Dummy auth middleware for all user routes, except /user, /login
+    - Error handling using app.use("/route", (err,req,res,next)=> {});
+    - Error handling using try-catch
