@@ -36,3 +36,18 @@
     - Dummy auth middleware for all user routes, except /user, /login
     - Error handling using app.use("/route", (err,req,res,next)=> {});
     - Error handling using try-catch
+
+# Before Ep 6 (S1, Ep 13):
+    - MongoDB Website 
+    - Create free M0 cluster (on MongoDB Atlas)
+    - Create a User 
+    - Get the connection string
+    - Use MongoDB Compass
+# Episode 6: 
+    - Install mongoose library
+    - Connect your application to the database (not cluster) : "ConnectionURL"/devTinder
+    - call the connectDB function and connect to database before starting application on 7777.
+    - Create a userSchema, and User model 
+    - Create /signup API to add data to database
+    - Push some documents using API calls from postman
+    - Error handling using try-catch
