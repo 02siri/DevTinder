@@ -51,3 +51,9 @@
     - Create /signup API to add data to database
     - Push some documents using API calls from postman
     - Error handling using try-catch
+
+# Episode 7:
+    - Diff bw JavaScript object and JSON object 
+        //JSON always takes key-values pairs as string, but JS doesn't take the keys as string
+    - Add express.json() middleware to the app
+    - Make signup API dynamic, to receive data from the end user (can be browser, postman, etc.)

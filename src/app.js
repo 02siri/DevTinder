@@ -4,28 +4,22 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
+//Middleware will be activated for ALL the routes/every request that runs on our server
+    //reads JSON object -> converts into JS object -> puts this into the req body -> req body returns this JS obj
+app.use(express.json());
+
 //api for sign up user
 app.post("/signup", async (req,res)=>{
-    const userObj = {
-        firstName: "Akshay",
-        lastName: "Saini",
-        emailId: "akshay123@gmail.com",
-        password: "akshay123",
-        age: 21,
-        gender: "male"
-    };
 
-//Creating a new instance of the User model by passing the data (userObj)
-const user = new User(userObj);
-//Because this is instance of User model and we call .save(), 
-// the data will be saved to the Db
-// This save() function will return a promise and so use async-await
-try{
-await user.save();
-res.send("User created successfully");
-}catch(err){
-    res.status(400).send("Error saving the user " + err.message);
-}
+
+    const user = new User(req.body);
+
+    try{
+    await user.save();
+    res.send("User created successfully");
+    }catch(err){
+        res.status(400).send("Error saving the user " + err.message);
+    }
 });
 
 
