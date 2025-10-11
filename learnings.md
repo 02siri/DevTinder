@@ -57,3 +57,11 @@
         //JSON always takes key-values pairs as string, but JS doesn't take the keys as string
     - Add express.json() middleware to the app
     - Make signup API dynamic, to receive data from the end user (can be browser, postman, etc.)
+    - User.findOne() with duplicate email Ids, which document will be returned : 
+    - API: Get user by email: find(), findOne()
+    - API: Feed api - GET /feed - get all users from the database : find()
+    - API: Get user by Id : findById()
+    - API: Delete user by Id : findByIdAndDelete(userId) or findOneAndDelete({_id: userID})
+    - API: Update user by Id : findByIdAndUpdate(userId, data, options)
+        - Explore options parameter in findByIdAndUpdate or findOneAndUpdate
+    - Explore Mongoose documentation for Models
