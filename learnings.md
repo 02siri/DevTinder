@@ -65,3 +65,11 @@
     - API: Update user by Id : findByIdAndUpdate(userId, data, options)
         - Explore options parameter in findByIdAndUpdate or findOneAndUpdate
     - Explore Mongoose documentation for Models
+
+# Episode 8
+    - Explored SchemType options from the documentation
+    - add required, unique, lowercase, min/max length/value, trim
+    - add default 
+    - Create a custom validate function for gender
+    - Improve the DB Schema - put all appropriate validations on each field in the schema
+    - Add timestamps to the user schema
