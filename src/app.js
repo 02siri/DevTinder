@@ -84,38 +84,57 @@ app.delete("/user", async(req,res) =>{
 
 })
 
-// //Update user using ID
-// app.patch("/user", async(req,res)=>{
-//     //Any other data sent in the request, which is not part of the schema, will be ignored by mongoDB
-//     const userID = req.body.userID;
-//     const data = req.body;
-
-//     try{    
-//                                                             //return the doc before update ; by default-> before 
-//         const user = await User.findByIdAndUpdate(userID, data, {returnDocument: "after"});
-//         console.log(user);
-//         res.send("User updated successfully");
-//     }catch(err){
-//         res.status(400).send("Something went wrong");
-//     }
-// });
-
-//Update user using emailId
-app.patch("/user", async(req,res)=>{
-    const emailId = req.body.emailId;
+//Update user using Id
+app.patch("/user/:userId", async(req,res)=>{
+    //Any other data sent in the request, which is not part of the schema, will be ignored by mongoDB
+    const userId = req.params?.userId;
     const data = req.body;
 
-    try{
-        const user = await User.findOneAndUpdate({emailId: emailId}, data,{
-            returnDocument: "after",
-            runValidators: true,
-        });
-        res.send("User updated by EmailId");
-    }catch(err){
-        res.status(400).send(err.message);
-    }
+    try{   
+            const ALLOWED_UPDATES = [
+            "photoURL", "about", "gender", "age", "skills"
+        ];
 
-})
+        //looping through each of the key in my request, 
+        // and make sure that all those keys are allowed to be updated, that are present in the ALLOWED_UPDATES array
+        const isUpdateAllowed = Object.keys(data).every((k)=> 
+            ALLOWED_UPDATES.includes(k)
+        );
+        if(!isUpdateAllowed){
+            throw new Error("Update not allowed");
+        }
+        if(data?.skills.length>10){
+            throw new Error("Skills cannot be more than 10");
+        }
+                                                            
+        const user = await User.findByIdAndUpdate(userId, data, {
+            returnDocument: "after", //return the doc before update ; by default-> before 
+            runValidators: true
+        });
+        console.log(user);
+        res.send("User updated successfully");
+    }catch(err){
+        res.status(400).send("Something went wrong " + err);
+    }
+});
+
+//Update user using emailId
+// app.patch("/user", async(req,res)=>{
+//     const emailId = req.body.emailId;
+//     const data = req.body;
+
+//     try{
+//         const user = await User.findOneAndUpdate({emailId: emailId}, data,{
+//             returnDocument: "after",
+//             runValidators: true,
+//         });
+//         res.send("User updated by EmailId");
+//     }catch(err){
+//         res.status(400).send(err.message);
+//     }
+
+// });
+
 connectDB().then(()=>{
     console.log("Database connection established...");
 
