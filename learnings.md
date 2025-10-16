@@ -77,3 +77,4 @@
     - Data Sanitization: API validations on each field
     - Install validator : npm i validator
     - Explore validator library functions & use them for password, email, Url, etc.
+    - Never trust req.body
