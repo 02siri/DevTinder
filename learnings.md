@@ -75,3 +75,5 @@
     - Add timestamps to the user schema 
     - Add API level validations on Patch request & Signup post API
     - Data Sanitization: API validations on each field
+    - Install validator : npm i validator
+    - Explore validator library functions & use them for password, email, Url, etc.
