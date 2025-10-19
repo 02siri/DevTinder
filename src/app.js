@@ -3,24 +3,77 @@ const connectDB = require("./config/database");
 //Creating new (instance of) application of express 
 const app = express();
 const User = require("./models/user");
+const validator = require("validator");
+
+const {validateSignUpData} = require("./utils/validation.js");
+const bcrypt = require("bcrypt");
 
 
 app.use(express.json());
 
 //api for signup user
 app.post("/signup", async (req,res)=>{
-    
-    const user = new User(req.body);
-
     try{
+    //1. Validation of data
+    validateSignUpData(req);
+
+    const {firstName, lastName, emailId, password} = req.body;
+
+    //2. Encrypt the password
+        //arguments: plainPswd, no. of saltRounds,
+            //saltRounds : the more the number of salt rounds will be, the more encryption level, and tougher to break the pswd 
+            //salt - random string fuiibwviebvb!@@#4
+
+    const passwordHash = await bcrypt.hash(password, 10); //returns a promise
+    console.log(passwordHash);
+    
+    //Creating new instance of User model
+    const user = new User({
+        firstName, 
+        lastName, 
+        emailId, 
+        password: passwordHash,
+    });
+        //3. Store user into DB
         await user.save();
         res.send("User created successfully")
     }catch(err){
-        res.status(400).send(err);
+        res.status(400).send("ERROR: " + err.message);
     }
 
 
 });
+
+app.post("/login", async(req,res)=>{
+    try{
+        const {emailId, password} = req.body;
+
+        if(!validator.isEmail((emailId))){
+            throw new Error("Email Id not valid");
+        }
+        
+        //Comparing Email and Pswd from DB  
+
+            //1. find user in the DB
+        const userEmail = await User.findOne({emailId: emailId});
+        if(!userEmail){
+            throw new Error("Invalid credentials");
+        }
+
+            //2. if user found, compare the pswd
+            //bcrypt.compare returns boolean
+        const isPswdValid = await bcrypt.compare(password, userEmail.password);
+
+        if(isPswdValid){
+            res.send("Login Successful");
+        }else{
+            throw new Error("Invalid credentials");
+        }
+
+    }catch(err){
+        res.status(400).send("ERROR: " + err.message);
+    }
+})
 
 //finding user by email (feed api)
 app.get("/user", async (req,res)=>{

@@ -78,3 +78,12 @@
     - Install validator : npm i validator
     - Explore validator library functions & use them for password, email, Url, etc.
     - Never trust req.body
+
+# Episode 9
+    - Validate data in Signup API - create a helper/utility function
+    - Install bcrypt package
+    - Create a PasswordHash using bcrypt.hash() & save the users with encrypted passwords
+    - Create Login API
+        - Compare email and pswd : bcrypt.compare()
+        - Throw errors if invalid
+        
