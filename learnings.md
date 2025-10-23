@@ -1,4 +1,3 @@
-
 # Episode 3: Creating Our Express Server
 
     - Create a repo
@@ -56,6 +55,8 @@
     - Diff bw JavaScript object and JSON object 
         //JSON always takes key-values pairs as string, but JS doesn't take the keys as string
     - Add express.json() middleware to the app
+    //Why Express.json? 
+        Whenever Im reading a request, I want that data to be parsed into json and then want to get it
     - Make signup API dynamic, to receive data from the end user (can be browser, postman, etc.)
     - User.findOne() with duplicate email Ids, which document will be returned : 
     - API: Get user by email: find(), findOne()
@@ -86,4 +87,24 @@
     - Create Login API
         - Compare email and pswd : bcrypt.compare()
         - Throw errors if invalid
-        
+    
+# JWT - Json Web Token
+    - Industry Standard
+    - Generates a unique token, that has a secret information embedded inside it, similar to a password Hash
+    - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.-> Header eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0. -> Payload (has the actual data)
+    KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30 -> Signature (validated)
+    - use npm package: jsonwebtoken : to create jwt tokens 
+
+# Episode 10
+    - Install cookie-parser
+    - Send a dummy cookie from /login to User
+    - create a GET /profile API, send the cookie back
+    - Install jsonwebtoken
+    - In Login API, after email+pswd validation, create a JWT token, and send it back to user, inside cookies
+    - Read the cookies inside your profile API and find the logged in user
+    - write userAuth middleware
+    - Add the userAuth middleware in APIs like : /profile, /sendConnectionRequest
+    - Set the expiry of JWT token and cookies
+    - Create userSchema method to getJWT
+    - Create userSchema method to compare pswds, take passwordInput 
+    
