@@ -108,3 +108,7 @@
     - Create userSchema method to getJWT
     - Create userSchema method to compare pswds, take passwordInput 
     
+# Episode 11
+    - Exploring tinder APIs
+    - Create list of all APIs in DevTinder
+    - Group multiple routes under respective routers 
