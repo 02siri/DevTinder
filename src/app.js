@@ -1,11 +1,12 @@
 const express = require ('express');
 const connectDB = require("./config/database");
-//Creating new (instance of) application of express 
-const app = express();
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
+
+//Creating new (instance of) application of express 
+const app = express();
 
 app.use(express.json());
 //Adding cookie parser middleware

@@ -1,16 +1,11 @@
 const express = require("express");
+const authRouter = express.Router();
+
 const {validateSignUpData} = require("../utils/validation");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 
-const authRouter = express.Router();
-    //Same as:
-        //const app = express();
-        //app.use("")..
-        //router.use("")..
-        
-//Now we will do authRouter.get, authRouter.post...
 
 authRouter.post("/signup", async (req,res)=>{
     try{
@@ -87,6 +82,14 @@ authRouter.post("/login", async(req,res)=>{
     }catch(err){
         res.status(400).send("ERROR: " + err.message);
     }
+});
+
+authRouter.post("/logout", async(req,res)=>{
+    //Expiring the cookie right there when the user calls this API
+    res.cookie("token", null, {
+        expires: new Date(Date.now()), //expiry time -> current time 
+    });
+    res.send("Logout Successful"); 
 });
 
 module.exports = authRouter;
