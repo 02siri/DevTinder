@@ -12,7 +12,7 @@ Do a logical separation/grouping of the routers:
 - PATCH /profile/edit
 - PATCH /profile/password
 
-## connectionRequestRouter:
+## requestRouter:
 Statuses: Sender[Ignore, Interested], Receiver[Accepted, Rejected]
 - POST /request/send/interested/:userId
 - POST /request/send/ignored/:userId

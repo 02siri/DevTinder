@@ -1,5 +1,4 @@
 # Episode 3: Creating Our Express Server
-
     - Create a repo
     - Initialize the repository (npm init)
     - node_modules, package.json, package-lock.json : saw the details and difference
@@ -112,3 +111,8 @@
     - Exploring tinder APIs
     - Create list of all APIs in DevTinder
     - Group multiple routes under respective routers 
+    - Read documentation for express.Router()
+    - Create routes folder for managing auth, profile, request routers
+    - Create routers - authRouter, profileRouter, requestRouter
+    - Import these routers in app.js
+    
