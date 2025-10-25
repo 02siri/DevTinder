@@ -120,3 +120,27 @@
     - Create PATCH /profile/password API (forgot password)
     - Test all APIs 
     - Validate all data in every POST/PATCH requests     
+
+# Episode 12 
+
+INDEX:
+// When we index certain fields in our DB, the API becomes faster
+// If firstName is indexed, whenever I will query something with the first Name, the queries will be very fast
+//If one field is being made as unique, MongoDB automatically makes that as the index of the DB 
+
+COMPOUND INDEX:
+// Making index on two fields together
+//Whenver you will query on both the fields together, the query will be faster
+//Eg: Finding Exsiting Connection Request query : because it is going through both fromUserId and toUserId
+ -> Read Article about Compound Index
+
+//But, creating too many indexes also comes with a cost - becomes tough for DB to deal with them
+
+- Why do we need indexes in DB? 
+- What are the advantages and disadvantages of indexes? 
+
+    - Create ConnectionRequest schema
+    - Send ConnectionRequest API    
+    - Proper Validation of data - ALWAYS THINK ABOUT ALL CORNER CASES
+    - $or query, and $and query in MongoDB - all logical, comparison etc queries
+    - schema.pre("save") function () {} - Pre function

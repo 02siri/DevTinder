@@ -9,10 +9,12 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLength: 4,
         maxLength: 50,
+        index: true //creating an index
     },
     lastName: {
         type: String
     },
+    //If one field is being made as unique, MongoDB automatically makes that as the index of the DB 
     emailId: {
         type: String,
         required: true,
@@ -34,10 +36,9 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        validate (value){
-            if(!["male", "female", "others"].includes(value)){
-                throw new Error("Gender data is not valid")
-            }
+        enum: {
+            values: ["male", "female", "others"],
+            message: `{VALUE} is not a valid gender type`,
         }
     },
     photoURL: {
