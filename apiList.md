@@ -14,13 +14,12 @@ Do a logical separation/grouping of the routers:
     
 
 ## requestRouter:
-Statuses: Sender[Ignore, Interested], Receiver[Accepted, Rejected]
+Statuses: Send[Ignore, Interested], Review[Accepted, Rejected]
 - POST /request/send/:status/:userId
 
-- POST /request/review/accepted/:requestId
-- POST /request/review/rejected/:requestId
+- POST /request/review/:status/:requestId
 
 ## userRouter:
-- GET /user/connections
 - GET /user/requests/received
+- GET /user/connections
 - GET /user/feed (Profile of other people on the platform)

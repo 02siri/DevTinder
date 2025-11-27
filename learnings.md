@@ -144,3 +144,9 @@ COMPOUND INDEX:
     - Proper Validation of data - ALWAYS THINK ABOUT ALL CORNER CASES
     - $or query, and $and query in MongoDB - all logical, comparison etc queries
     - schema.pre("save") function () {} - Pre function
+
+# Episode 13
+    - API: /request/review/:status/:requestId : Cover all validations 
+    - Read about ref-populate
+    - API : /user/requests/received : Do all checks
+    - API: /user/connections -> used MongoDB $or query 
