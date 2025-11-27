@@ -23,3 +23,9 @@ Statuses: Send[Ignore, Interested], Review[Accepted, Rejected]
 - GET /user/requests/received
 - GET /user/connections
 - GET /user/feed (Profile of other people on the platform)
+    //User can see all user cards, except:
+        //0. his own card
+        //1. connections (status: 'accepted')
+        //2. ignored someone (status: 'ignored')
+        //3. already sent connection requests to (status: 'interested')
+        //4. someone rejected his request (status: 'rejected')

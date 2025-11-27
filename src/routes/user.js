@@ -1,6 +1,7 @@
 const express = require('express');
 const { userAuth } = require('../middlewares/auth');
 const ConnectionRequest = require('../models/connectionRequest');
+const User = require("../models/user");
 
 const userRouter = express.Router();
 
@@ -65,14 +66,40 @@ userRouter.get("/user/connections", userAuth,async(req,res)=>{
 
 userRouter.get("/feed", userAuth, async(req,res)=>{
     try{
-        const loggedInUser = req.user;
+        const loggedInUser = await req.user;
 
-        //User can see all user cards, except:
-        //0. his own card
-        //1. connections (status: 'accepted')
-        //2. ignored someone (status: 'ignored')
-        //3. already sent connection requests to (status: 'interested')
-        //4. someone rejected his request (status: 'rejected')
+            //if page not passed, assume to be 1
+        const page = parseInt(req.query.page) || 1;
+            
+            //if limit not passed, assume to be 10
+        let limit = parseInt(req.query.limit) || 10;
+            //if limit > 30, set limit to 30 or the limit (from qeury or 10)
+        limit = limit > 30 ? 30 : limit;
+
+        const skipUsers = (page-1) * limit;
+
+        //1. Find all connection requests (sent + received)
+        const connectionRequests = await ConnectionRequest.find({
+            $or:[
+                {fromUserId: loggedInUser._id},
+                {toUserId: loggedInUser._id}
+            ]
+        }).select("fromUserId toUserId");
+
+        const hiddenUsersFromFeed = new Set();
+        connectionRequests.forEach(req => {
+            hiddenUsersFromFeed.add(req.fromUserId.toString());
+            hiddenUsersFromFeed.add(req.toUserId.toString());
+        });
+
+        const usersInFeed = await User.find({
+            $and: [{_id: {$nin: Array.from(hiddenUsersFromFeed)},},
+                {_id: {$ne: loggedInUser._id}},
+            ],
+        }).select(USER_SAFE_DATA).skip(skipUsers).limit(limit);
+
+        console.log(hiddenUsersFromFeed);
+        res.send(usersInFeed);
     
 
     }catch(err){

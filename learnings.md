@@ -150,3 +150,24 @@ COMPOUND INDEX:
     - Read about ref-populate
     - API : /user/requests/received : Do all checks
     - API: /user/connections -> used MongoDB $or query 
+
+# Episode 14
+    - API : /feed -> used $or, $and, .select, $nin, $ne
+    - Explore other query operators 
+    - Pagination: 
+        Using Query Params in the URL: 
+            /feed?page=1&limit=10: 10 users in 1st page (users 1-10)
+                    .skip(0)&.limit(10) -> skip 0, show 10 users
+
+            /feed?page=2&limit=10: 10 users in 2nd page (users 11-20)
+                    .skip(10)&.limit(10) -> skip 10 users, show 10 users
+
+            /feed?page=3&limit=10: 10 users in 3rd page (users 21-30)
+                    .skip(20)&.liimt(10) -> skip 20 users, show 10 users 
+        
+        Functions in MongoDB:
+            - .limit()-> how many documents do you want
+            - .skip()-> how many documents you want to skip from the starting
+
+            Formula for skip:
+            (page-1)*limit
