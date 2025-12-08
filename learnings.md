@@ -171,3 +171,6 @@ COMPOUND INDEX:
 
             Formula for skip:
             (page-1)*limit
+
+# DevTinder UI Part 1:
+    - Using React.js + Vite (build tool for bundling, provides Templates)

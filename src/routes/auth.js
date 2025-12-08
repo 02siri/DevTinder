@@ -74,7 +74,7 @@ authRouter.post("/login", async(req,res)=>{
         //Job of browser is to read the cookies, and keep it safely
         //Whenever Im making any other API call, please send back the cookie
 
-            res.send("Login Successful");
+            res.send(user);
         }else{
             throw new Error("Invalid credentials");
         }
