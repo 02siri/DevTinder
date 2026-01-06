@@ -12,8 +12,7 @@ const app = express();
 app.use(cors({
     //whitelisting this domain name, so that it can receive cookies 
      origin: [
-        "http://localhost:5173",  
-        "http://3.27.65.46"       
+        "http://localhost:5173",     
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
