@@ -37,13 +37,13 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String,
         enum: {
-            values: ["male", "female", "others"],
+            values: ["Male", "Female", "Others"],
             message: `{VALUE} is not a valid gender type`,
         }
     },
     photoURL: {
         type: String,
-        default: "https://www.freepik.com/free-vector/blue-circle-with-white-user_145857007.htm#fromView=keyword&page=1&position=0&uuid=59254a10-5397-4127-88c3-c5910dddf5eb&query=User+profile",
+        default: "https://img.freepik.com/free-icon/user_318-563642.jpg",
     },
     about:{
         type: String,

@@ -20,7 +20,6 @@ authRouter.post("/signup", async (req,res)=>{
             //salt - random string fuiibwviebvb!@@#4
 
     const passwordHash = await bcrypt.hash(password, 10); //returns a promise
-    console.log(passwordHash);
     
     //Creating new instance of User model
     const user = new User({
@@ -30,8 +29,20 @@ authRouter.post("/signup", async (req,res)=>{
         password: passwordHash,
     });
         //3. Store user into DB
-        await user.save();
-        res.send("User created successfully")
+        const savedUser = await user.save();
+
+         const token = await savedUser.getJWT();
+                    
+            //2. Add token to Cookie + 3. Send response back to user 
+            res.cookie("token", token, {
+                httpOnly: true,
+                expires: new Date(Date.now() + 8 + 3600000)
+            });
+
+
+        res.json({messsage: "User created successfully", data: savedUser});
+        res.send(savedUser);
+
     }catch(err){
         res.status(400).send("ERROR: " + err.message);
     }

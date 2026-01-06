@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 const userRouter = express.Router();
 
-const USER_SAFE_DATA = "firstName lastName";
+const USER_SAFE_DATA = "firstName lastName photoURL age gender about skills";
 
 //Get all the 'pending' connection requests for the logged in user
 userRouter.get("/user/requests/received",userAuth, async(req,res)=>{
@@ -45,7 +45,7 @@ userRouter.get("/user/connections", userAuth,async(req,res)=>{
     }).populate("fromUserId",USER_SAFE_DATA)
     . populate("toUserId", USER_SAFE_DATA);
 
-    console.log(connections);
+    // console.log(connections);
 
     const data = connections.map(row => {
         if(row.fromUserId._id.toString() === loggedInUser._id.toString()){
@@ -98,7 +98,6 @@ userRouter.get("/feed", userAuth, async(req,res)=>{
             ],
         }).select(USER_SAFE_DATA).skip(skipUsers).limit(limit);
 
-        console.log(hiddenUsersFromFeed);
         res.send(usersInFeed);
     
 

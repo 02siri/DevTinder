@@ -1,7 +1,6 @@
 const express = require("express");
 const {userAuth} = require("../middlewares/auth");
 const {validateProfileEditData} = require("../utils/validation");
-const validator = require("validator");
 const bcrypt = require("bcrypt");
 
 const profileRouter = express.Router();
@@ -10,7 +9,7 @@ profileRouter.get("/profile/view", userAuth, async(req,res)=>{
 
     try{
          
-   res.send(req.user.firstName);
+   res.send(req.user);
    
     }catch(err){
         res.status(400).send("ERROR: " + err.message);
@@ -34,14 +33,14 @@ profileRouter.patch("/profile/edit", userAuth, async (req,res)=>{
 
     await loggedInUser.save();
 
-    res.send(`${loggedInUser.firstName} your profile Updated Successfully`);
+    // res.send(`${loggedInUser.firstName} your profile Updated Successfully`);
     
-    // res.json({
-    //     message: `${loggedInUser.firstName} your profile Updated Successfully`,
-    //     data: loggedInUser,
-    // });
-
-    }catch(err){
+    res.json({
+        message: `${loggedInUser.firstName} your profile Updated Successfully`,
+        data: loggedInUser,
+    });
+}
+catch(err){
         res.status(400).send("ERROR: " + err.message);
     }
 }); 
