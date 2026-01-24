@@ -2,10 +2,12 @@ const express = require("express");
 const {userAuth} = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
+const sendEmail = require("../utils/sendEmail");
 
 const requestRouter = express.Router();
 
 requestRouter.post("/request/send/:status/:toUserId", userAuth, async(req,res)=>{
+   console.log("Route hit!!");
    try{
    
       const fromUserId = req.user._id;
@@ -48,7 +50,16 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async(req,res)=>
          status,
       });
 
-      const data = await connectionRequest.save();
+  console.log("Before saving connection request");
+
+const data = await connectionRequest.save();
+
+console.log("After saving, before sending email");
+
+const emailRes = await sendEmail.run();
+
+console.log("EMAIL RESPONSE:", emailRes);
+
       res.json({
          message: req.user.firstName + " " + status + " " + toUser.firstName,
           data,

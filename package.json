@@ -1,5 +1,5 @@
 {
-  "name": "devtinder",
+  "name": "dev-finder",
   "version": "1.0.0",
   "description": "tinder for devs",
   "main": "index.js",
@@ -15,6 +15,7 @@
   "author": "Srishti Khosla",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.975.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

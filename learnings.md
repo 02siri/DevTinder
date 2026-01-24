@@ -109,7 +109,7 @@
     
 # Episode 11
     - Exploring tinder APIs
-    - Create list of all APIs in DevTinder
+    - Create list of all APIs in Dev-Finder
     - Group multiple routes under respective routers 
     - Read documentation for express.Router()
     - Create routes folder for managing auth, profile, request routers
@@ -172,5 +172,5 @@ COMPOUND INDEX:
             Formula for skip:
             (page-1)*limit
 
-# DevTinder UI Part 1:
+# Dev-Finder UI Part 1:
     - Using React.js + Vite (build tool for bundling, provides Templates)
