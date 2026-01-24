@@ -7,7 +7,7 @@ const sendEmail = require("../utils/sendEmail");
 const requestRouter = express.Router();
 
 requestRouter.post("/request/send/:status/:toUserId", userAuth, async(req,res)=>{
-   console.log("Route hit!!");
+
    try{
    
       const fromUserId = req.user._id;
