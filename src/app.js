@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require ('express');
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -35,7 +36,7 @@ connectDB().then(()=>{
 
     //created a server on port 7777, and my app is listening on this server
     //this callback function will only work if my sever has been started successfully
-app.listen(7777, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Successfully listening on port 7777");
 });
 

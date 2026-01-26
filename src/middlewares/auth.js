@@ -12,7 +12,7 @@ const userAuth = async (req,res,next)=>{
     }
 
     //Validate the token 
-    const decodedData = await jwt.verify(token, "DEV@Tinder#790$");
+    const decodedData = await jwt.verify(token, process.env.JWT_SECRET);
     
     //Find the user
     const {_id} = decodedData;

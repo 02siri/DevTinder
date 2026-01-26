@@ -54,9 +54,10 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async(req,res)=>
 
 const data = await connectionRequest.save();
 
-console.log("After saving, before sending email");
-
-const emailRes = await sendEmail.run();
+const emailRes = await sendEmail.run(
+   req.user.firstName + " is waiting for you!",
+ req.user.firstName + " is " + status + " in you!"
+);
 
 console.log("EMAIL RESPONSE:", emailRes);
 
