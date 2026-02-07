@@ -1,4 +1,5 @@
 require('dotenv').config();
+require("./utils/cronJobs"); //This file will run as soon as app runs
 const express = require ('express');
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");

@@ -50,16 +50,19 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async(req,res)=>
          status,
       });
 
-  console.log("Before saving connection request");
+   console.log("Before saving connection request");
 
 const data = await connectionRequest.save();
 
-const emailRes = await sendEmail.run(
-   req.user.firstName + " is waiting for you!",
- req.user.firstName + " is " + status + " in you!"
-);
+console.log("Connection request saved");
 
-console.log("EMAIL RESPONSE:", emailRes);
+// const emailRes = await sendEmail.run(
+//    req.user.firstName + " is waiting for you!",
+//  req.user.firstName + " is " + status + " in you!",
+// toUser.emailId
+// );
+
+// console.log("EMAIL RESPONSE:", emailRes);
 
       res.json({
          message: req.user.firstName + " " + status + " " + toUser.firstName,
@@ -68,7 +71,7 @@ console.log("EMAIL RESPONSE:", emailRes);
       );
 
    }catch(err){
-    res.status(400).send("ERROR: " + err.message);
+    return res.status(400).send("ERROR: " + err.message);
    }
     
 });

@@ -39,9 +39,9 @@ const createSendEmailCommand = (toAddress, fromAddress, subject, body) => {
   });
 };
 
-const run = async (subject, body) => {
+const run = async (subject, body, toEmailId) => {
   const sendEmailCommand = createSendEmailCommand(
-    "srishtikhosla11@gmail.com",
+    toEmailId,
     "support@dev-finder.online",
     subject,body,
   );
